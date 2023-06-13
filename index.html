@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Incremental Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-color: white; /* Set the initial background color to white */
+    }
+      
+    @keyframes rainbow-animation {
+        0%   { color: red; }
+        14%  { color: orange; }
+        28%  { color: yellow; }
+        42%  { color: green; }
+        57%  { color: blue; }
+        71%  { color: indigo; }
+        85%  { color: violet; }
+        100% { color: red; }
+    }
+    
+    @keyframes spinAnimation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Add a new CSS class for changing the background color */
+    .score-multiple-ten {
+      background-color: #cccccc;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    h2 {
+      color: #666;
+    }
+
+    #table-flip {
+      font-size: 50px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #score {
+      font-weight: bold;
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <audio id="audioPlayer" src="/Users/Demetrick/dule.mp3"></audio>
+  <audio id="flipSound" src="./flip.wav"></audio>
+  <audio id="placeSound" src="./place.mp3"></audio>
+
+
+  <h1 id="title">A table sits in peace</h1>
+  <h2>Score: <span id="score">0</span></h2>
+
+  <div id="table-flip">┬─┬</div>
+
+  <button onclick="incrementScore()" id='table-button'>┬─┬</button>
+
+  <script>
+      
+    var flipTable = true;
+    var isFlipped = false;
+    var tableFlipDiv = document.getElementById("table-flip");
+    var titleFlipDiv = document.getElementById("title");
+    var score = 0;
+    var scoreDisplay = document.getElementById("score");
+    var fontSize = 50; // Initial font size
+    var button = document.getElementById('table-button');
+
+
+      
+    var placeSound = document.getElementById("placeSound");  
+    var flipSound = document.getElementById("flipSound");  
+    var music = document.getElementById("music");
+      
+    function increaseFontSize() {
+      fontSize += 1;
+      tableFlipDiv.style.fontSize = fontSize + "px";
+    }
+
+    
+
+
+
+      
+    function incrementScore() {
+      score++;
+      scoreDisplay.textContent = score;
+
+      if (flipTable) {
+        if (score <= 10) {
+          tableFlipDiv.textContent = "(╯°□°)╯︵ ┻━┻";
+        } else if (score >= 10 && score < 20) {
+          tableFlipDiv.textContent = "(┛ಠ_ಠ)┛彡┻━┻";
+        } else if (score >= 20) {
+          tableFlipDiv.textContent = "(ノಠ益ಠ)ノ彡┻━┻";
+        }
+        flipSound.play()
+          
+      } else {
+        tableFlipDiv.textContent = "┬─┬ノ( º _ ºノ)";
+        placeSound.play()
+      }
+      flipTable = !flipTable;
+
+       // Level 1     
+      if (score === 10) {
+        music.play();
+        titleFlipDiv.textContent = "Duel To The Death"; 
+      }
+
+      // Level 2
+      if (score === 10){        
+          titleFlipDiv.textContent = "Duel To The Death"; 
+      }
+        
+      if (score >= 10 && score < 20) {
+          if (isFlipped) {
+            document.body.style.transform = "rotate(0deg)";
+            tableFlipDiv.style.color = 'Black';
+            document.body.style.background = 'White';
+
+          } else {
+            document.body.style.transform = "rotate(180deg)";
+            tableFlipDiv.style.color = 'White';
+            document.body.style.background = 'Black';
+          }
+          isFlipped = !isFlipped;
+      }
+
+      // Level 3     
+        
+      if(score === 20){
+          tableFlipDiv.style.animation = 'rainbow-animation 1s linear infinite';
+          document.body.style.backgroundImage = "url('./space.jpg')";
+          document.body.style.transform = "rotate(0deg)";
+      }
+        
+      if (score >= 20 && score < 30) {
+          if(flipTable){
+         document.body.style.animation = "spinAnimation 5s infinite linear";
+          }
+          else{document.body.style.animation = "spinAnimation 5s infinite linear reverse";
+              }
+      }
+          
+        
+      /*    
+      // Level 4
+      if (true){
+        document.body.style.animation = "";
+        tableFlipDiv.style.animation = '';
+        tableFlipDiv.style.color = 'Black';
+        document.body.style.background = 'White';
+          
+          
+      // Set random position
+        button.style.position = 'fixed';
+        button.style.top = Math.random() * window.innerHeight + 'px';
+        button.style.left = Math.random() * window.innerWidth + 'px';
+
+      // Append button to the document body
+       document.body.appendChild(button);
+       
+       setInterval(createButton, 1000);
+      // Remove button after 1 second
+      setTimeout(function() {
+        button.remove();
+      }, 1000);
+    }
+
+
+          
+      }
+        */
+          
+
+
+    // Call createButton every second
+
+
+    increaseFontSize();
+    }
+  </script>
+</body>
+</html>
