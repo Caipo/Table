@@ -74,8 +74,8 @@
 </head>
 <body>
   <audio id="audioPlayer" src="/Users/Demetrick/dule.mp3"></audio>
-  <audio id="flipSound" src="./flip.wav"></audio>
-  <audio id="placeSound" src="./place.mp3"></audio>
+  <audio id="flipSound" src="./static/flip.wav"></audio>
+  <audio id="placeSound" src="./static/place.mp3"></audio>
 
 
   <h1 id="title">A table sits in peace</h1>
@@ -161,7 +161,7 @@
         
       if(score === 20){
           tableFlipDiv.style.animation = 'rainbow-animation 1s linear infinite';
-          document.body.style.backgroundImage = "url('./space.jpg')";
+          document.body.style.backgroundImage = "url('./static/space.jpg')";
           document.body.style.transform = "rotate(0deg)";
       }
         
